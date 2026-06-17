@@ -1,0 +1,404 @@
+{
+    "type": "database",
+    "name": "moths_database",
+    "objects": [
+        {
+            "type": "table",
+            "database": null,
+            "name": "endemic",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE `endemic` (\n  `endemic_id` INTEGER,\n  `endemic` TEXT(3),\n  PRIMARY KEY (`endemic_id`)\n)",
+            "columns": [
+                {
+                    "name": "endemic_id",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "endemic",
+                    "type": "TEXT"
+                }
+            ],
+            "constraints": [
+                {
+                    "type": "PRIMARY KEY",
+                    "definition": "PRIMARY KEY (`endemic_id`)\n"
+                }
+            ],
+            "rows": [
+                [
+                    1,
+                    "Yes"
+                ],
+                [
+                    2,
+                    "No"
+                ]
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "lifespan",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE `lifespan` (\n  `lifespan_id` INTEGER,\n  `lifespan` INTEGER,\n  PRIMARY KEY (`lifespan_id`)\n)",
+            "columns": [
+                {
+                    "name": "lifespan_id",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "lifespan",
+                    "type": "INTEGER"
+                }
+            ],
+            "constraints": [
+                {
+                    "type": "PRIMARY KEY",
+                    "definition": "PRIMARY KEY (`lifespan_id`)\n"
+                }
+            ],
+            "rows": [
+                [
+                    1,
+                    2
+                ],
+                [
+                    2,
+                    7
+                ],
+                [
+                    3,
+                    10
+                ],
+                [
+                    4,
+                    14
+                ],
+                [
+                    5,
+                    31
+                ]
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "moths",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE `moths` (\n  `moth_id` INTEGER,\n  `scientific_name` TEXT(30),\n  `common_name` TEXT(35),\n  `origin_id` INTEGER,\n  `endemic_id` INTEGER,\n  `lifespan_id` INTEGER,\n  `average_wingspan` INTEGER,\n  `max_wingspan` INTEGER,\n  `min_wingspan` INTEGER,\n  PRIMARY KEY (`moth_id`),\n  FOREIGN KEY (`origin_id`)\n      REFERENCES `origin`(`origin_id`),\n  FOREIGN KEY (`endemic_id`)\n      REFERENCES `endemic`(`endemic_id`),\n  FOREIGN KEY (`lifespan_id`)\n      REFERENCES `lifespan`(`lifespan_id`)\n)",
+            "columns": [
+                {
+                    "name": "moth_id",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "scientific_name",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "common_name",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "origin_id",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "endemic_id",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "lifespan_id",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "average_wingspan",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "max_wingspan",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "min_wingspan",
+                    "type": "INTEGER"
+                }
+            ],
+            "constraints": [
+                {
+                    "type": "PRIMARY KEY",
+                    "definition": "PRIMARY KEY (`moth_id`)"
+                },
+                {
+                    "type": "FOREIGN KEY",
+                    "definition": "FOREIGN KEY (`origin_id`)\n      REFERENCES `origin`(`origin_id`)"
+                },
+                {
+                    "type": "FOREIGN KEY",
+                    "definition": "FOREIGN KEY (`endemic_id`)\n      REFERENCES `endemic`(`endemic_id`)"
+                },
+                {
+                    "type": "FOREIGN KEY",
+                    "definition": "FOREIGN KEY (`lifespan_id`)\n      REFERENCES `lifespan`(`lifespan_id`)\n"
+                }
+            ],
+            "rows": [
+                [
+                    1,
+                    "Actias Luna",
+                    "Luna Moth",
+                    1,
+                    1,
+                    2,
+                    114,
+                    178,
+                    80
+                ],
+                [
+                    2,
+                    "Aenetus Virescens",
+                    "Pūriri Moth",
+                    2,
+                    1,
+                    1,
+                    126,
+                    150,
+                    92
+                ],
+                [
+                    3,
+                    "Dryocampa Rubicunda",
+                    "Rosy Maple Moth",
+                    1,
+                    1,
+                    3,
+                    41,
+                    55,
+                    32
+                ],
+                [
+                    4,
+                    "Eremobia Ochroleuca",
+                    "Dusky Sallow Moth",
+                    3,
+                    2,
+                    3,
+                    35,
+                    38,
+                    27
+                ],
+                [
+                    5,
+                    "Hepialus Humuli",
+                    "Ghost Moth",
+                    3,
+                    1,
+                    1,
+                    51,
+                    69,
+                    42
+                ],
+                [
+                    6,
+                    "Patania Ruralis",
+                    "Mother Of Pearl Moth",
+                    3,
+                    2,
+                    4,
+                    33,
+                    40,
+                    26
+                ],
+                [
+                    7,
+                    "Antheraea Polyphemus",
+                    "Polyphemus Moth",
+                    1,
+                    2,
+                    2,
+                    12.5,
+                    15,
+                    10
+                ],
+                [
+                    8,
+                    "Automeris Io",
+                    "Io Moth",
+                    1,
+                    1,
+                    3,
+                    75.5,
+                    88,
+                    63
+                ],
+                [
+                    9,
+                    "Hypoprepia Fucosa",
+                    "Painted Lichen Moth",
+                    1,
+                    2,
+                    3,
+                    30,
+                    35,
+                    25
+                ],
+                [
+                    10,
+                    "Hyalophora Cecropia",
+                    "Cecropia Moth",
+                    1,
+                    1,
+                    3,
+                    15.5,
+                    18,
+                    13
+                ],
+                [
+                    11,
+                    "Attacus Atlas",
+                    "Atlas Moth",
+                    4,
+                    1,
+                    3,
+                    27,
+                    30,
+                    25
+                ],
+                [
+                    12,
+                    "Acherontia Atropos",
+                    "African Death's Head Hawkmoth",
+                    5,
+                    2,
+                    5,
+                    102,
+                    135,
+                    80
+                ],
+                [
+                    13,
+                    "Biston Betularia",
+                    "Peppered Moth",
+                    3,
+                    2,
+                    4,
+                    55,
+                    62,
+                    35
+                ]
+            ]
+        },
+        {
+            "type": "table",
+            "database": null,
+            "name": "origin",
+            "withoutRowId": false,
+            "strict": false,
+            "ddl": "CREATE TABLE `origin` (\n  `origin_id` INTEGER,\n  `origin` TEXT(15),\n  PRIMARY KEY (`origin_id`)\n)",
+            "columns": [
+                {
+                    "name": "origin_id",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "origin",
+                    "type": "TEXT"
+                }
+            ],
+            "constraints": [
+                {
+                    "type": "PRIMARY KEY",
+                    "definition": "PRIMARY KEY (`origin_id`)\n"
+                }
+            ],
+            "rows": [
+                [
+                    1,
+                    "North America"
+                ],
+                [
+                    2,
+                    "Oceania"
+                ],
+                [
+                    3,
+                    "Europe"
+                ],
+                [
+                    4,
+                    "Asia"
+                ],
+                [
+                    5,
+                    "Africa"
+                ]
+            ]
+        },
+        {
+            "type": "view",
+            "database": null,
+            "name": "all",
+            "ddl": "CREATE VIEW \"all\" AS SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id",
+            "select": "SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id"
+        },
+        {
+            "type": "view",
+            "database": null,
+            "name": "lifespan_below_6",
+            "ddl": "CREATE VIEW lifespan_below_6 AS SELECT scientific_name, origin, lifespan, min_wingspan, max_wingspan\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE lifespan < 6",
+            "select": "SELECT scientific_name, origin, lifespan, min_wingspan, max_wingspan\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE lifespan < 6"
+        },
+        {
+            "type": "view",
+            "database": null,
+            "name": "lifespan_not_endemic",
+            "ddl": "CREATE VIEW lifespan_not_endemic AS SELECT common_name, scientific_name, lifespan\nFROM moths\nLEFT JOIN endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE lifespan >= 9 AND endemic = 'No'",
+            "select": "SELECT common_name, scientific_name, lifespan\nFROM moths\nLEFT JOIN endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE lifespan >= 9 AND endemic = 'No'"
+        },
+        {
+            "type": "view",
+            "database": null,
+            "name": "lifespan_top5",
+            "ddl": "CREATE VIEW lifespan_top5 AS SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nORDER BY lifespan DESC, common_name\nLIMIT 5",
+            "select": "SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nORDER BY lifespan DESC, common_name\nLIMIT 5"
+        },
+        {
+            "type": "view",
+            "database": null,
+            "name": "max_wingspan_offset5",
+            "ddl": "CREATE VIEW max_wingspan_offset5 AS SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nORDER BY max_wingspan DESC, common_name\nLIMIT 5\nOFFSET 5",
+            "select": "SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nORDER BY max_wingspan DESC, common_name\nLIMIT 5\nOFFSET 5"
+        },
+        {
+            "type": "view",
+            "database": null,
+            "name": "north_america_lifespan_1week",
+            "ddl": "CREATE VIEW north_america_lifespan_1week AS SELECT common_name, lifespan\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE origin = 'North America' AND lifespan > 7",
+            "select": "SELECT common_name, lifespan\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE origin = 'North America' AND lifespan > 7"
+        },
+        {
+            "type": "view",
+            "database": null,
+            "name": "wingspan_over_100",
+            "ddl": "CREATE VIEW wingspan_over_100 AS SELECT scientific_name, common_name, max_wingspan, min_wingspan, average_wingspan, lifespan\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE average_wingspan >= 100",
+            "select": "SELECT scientific_name, common_name, max_wingspan, min_wingspan, average_wingspan, lifespan\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE average_wingspan >= 100"
+        },
+        {
+            "type": "view",
+            "database": null,
+            "name": "wingspan_sortby_scientific_name",
+            "ddl": "CREATE VIEW wingspan_sortby_scientific_name AS SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE min_wingspan <= 30\nORDER BY min_wingspan, scientific_name",
+            "select": "SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE min_wingspan <= 30\nORDER BY min_wingspan, scientific_name"
+        },
+        {
+            "type": "view",
+            "database": null,
+            "name": "wingspans",
+            "ddl": "CREATE VIEW wingspans AS SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE average_wingspan > 70 AND (max_wingspan > 140 OR min_wingspan < 90)",
+            "select": "SELECT common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference\nFROM moths\nLEFT JOIN origin ON moths.origin_id = origin.origin_id, endemic ON moths.endemic_id = endemic.endemic_id, lifespan ON moths.lifespan_id = lifespan.lifespan_id\nWHERE average_wingspan > 70 AND (max_wingspan > 140 OR min_wingspan < 90)"
+        }
+    ]
+}
