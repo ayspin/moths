@@ -43,8 +43,6 @@ def print_parameter_query(fields:str, where:str, parameter):
     print(tabulate(results,fields.split(",")))
     db.close()  
 
-make = input('Which make cars do you want to see: ')
-print_parameter_query("model, top_speed", "make = ? ORDER BY top_speed DESC", make)
 
 
 # A IN COMMON NAME
@@ -56,3 +54,11 @@ print_parameter_query("model, top_speed", "make = ? ORDER BY top_speed DESC", ma
 # wingspan_over100
 # wingspan_sortby_scientifitc
 # wingspans
+
+print_query('all')
+
+# make = input('TXTTXT MOTHS TXT: ')
+# print_parameter_query("model, top_speed", "make = ? ORDER BY top_speed DESC", make)
+
+a_in_common_name = input('Please type which letter you would like to filter by in common name: ')
+print_parameter_query("common_name, max_wingspan - min_wingspan AS difference, average_wingspan, lifespan, origin", "common_name LIKE %?% ORDER BY difference", a_in_common_name)
