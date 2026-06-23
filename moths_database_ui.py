@@ -43,6 +43,45 @@ def print_parameter_query(fields:str, where:str, parameter):
     print(tabulate(results,fields.split(",")))
     db.close()  
 
+# MENU
+menu_choice = ''
+while menu_choice != 'X':
+    menu_choice = input('Welcome to the moths database.'
+                        'Type the letter of the information you want to see: \n'
+                        'A: All Moths.\n'
+                        'B: Specific letter in non-endemic moths name.\n'
+                        'C: Shows moths with a lifespan below a specified number.\n'
+                        'D:\n'
+                        'E:\n'
+                        'F:\n'
+                        'G:\n'
+                        'H:\n'
+                        'I:\n'
+                        'J:\n' \
+                        'X: Exit\n\n' \
+                        'Type choice here: ')
+    menu_choice = menu_choice.upper()
+    if menu_choice == 'A':
+        print_query('all')
+    elif menu_choice == 'B':
+        print_parameter_query('a_in_common_name')
+    elif menu_choice == 'C':
+        print_parameter_query('lifespan_below9')
+    elif menu_choice == 'D':
+        print_parameter_query('TXT')
+    elif menu_choice == 'E':
+        print_parameter_query('TXT')
+    elif menu_choice == 'F':
+        print_parameter_query('TXT')
+    elif menu_choice == 'G':
+        print_parameter_query('TXT')
+    elif menu_choice == 'H':
+        print_parameter_query('TXT')
+    elif menu_choice == 'I':
+        print_parameter_query('TXT')
+    elif menu_choice == 'J':
+        print_parameter_query('TXT')
+    
 
 
 # A IN COMMON NAME
@@ -55,10 +94,14 @@ def print_parameter_query(fields:str, where:str, parameter):
 # wingspan_sortby_scientifitc
 # wingspans
 
-print_query('all')
+#print_query('all')
 
 # make = input('TXTTXT MOTHS TXT: ')
 # print_parameter_query("model, top_speed", "make = ? ORDER BY top_speed DESC", make)
 
-a_in_common_name = input('Please type which letter you would like to filter by in common name: ')
-print_parameter_query("common_name, max_wingspan - min_wingspan AS difference, average_wingspan, lifespan, origin", "common_name LIKE %?% ORDER BY difference", a_in_common_name)
+    a_in_common_name = input('Please type which letter you would like to filter by in common name: ')
+    print_parameter_query("common_name, max_wingspan - min_wingspan AS difference, average_wingspan, lifespan, origin", 
+                          "common_name LIKE '%'||?||'%' ORDER BY difference", a_in_common_name)
+
+#lifespan_below9 = input('Please type the number you would like to see lifespans of non-endemic moths below: ')
+#print_parameter_query("scientific_name, common_name, origin, lifespan, min_wingspan, max_wingspan, endemic", "lifespan < ? AND endemic = 'No'", lifespan_below9)
