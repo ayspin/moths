@@ -10,7 +10,7 @@ DB_NAME = 'moths_database.db'
 TABLES = (" moths "
            "LEFT JOIN origin ON moths.origin_id = origin.origin_id "
             "LEFT JOIN endemic ON moths.endemic_id = endemic.endemic_id "
-            "LEFT JOIN lifespan ON moths.lifespan_id ")
+            "LEFT JOIN lifespan ON moths.lifespan_id = lifespan.lifespan_id ")
 
 
 
@@ -45,48 +45,54 @@ def print_parameter_query(fields:str, where:str, parameter):
 
 # MENU
 menu_choice = ''
-while menu_choice != 'X':
+while menu_choice != 'Z':
     menu_choice = input('Welcome to the moths database.'
                         'Type the letter of the information you want to see: \n'
                         'A: All Moths.\n'
-                        'B: Specific letter in non-endemic moths name.\n'
+                        'B: Shows moths with specific letter in their common name.\n'
                         'C: Shows moths with a lifespan below a specified number.\n'
-                        'D:\n'
-                        'E:\n'
-                        'F:\n'
+                        'D: Shows the top five moths with the longest lifespan.\n'
+                        'E: Shows the top five runner ups for the biggest wingspan.\n'
+                        'F: Shows moths with a lifespan above 7 and from a specific continent.\n'
                         'G:\n'
                         'H:\n'
                         'I:\n'
                         'J:\n' \
-                        'X: Exit\n\n' \
+                        'Z: Exit\n\n' \
                         'Type choice here: ')
     menu_choice = menu_choice.upper()
     if menu_choice == 'A':
         print_query('all')
     elif menu_choice == 'B':
-        print_parameter_query('a_in_common_name')
+        a_in_common_name = input('Please type which letter you would like to filter by in common name: ')
+        print_parameter_query("common_name, max_wingspan - min_wingspan AS difference, average_wingspan, lifespan, origin", "common_name LIKE '%'||?||'%' ORDER BY difference", a_in_common_name)
     elif menu_choice == 'C':
-        print_parameter_query('lifespan_below9')
+        lifespan_below9 = int(input('Please type the number you would like to see lifespans of non-endemic moths below: '))
+        print_parameter_query("scientific_name, common_name, origin, lifespan, min_wingspan, max_wingspan, endemic", "lifespan < ? AND endemic = 'No' ORDER BY lifespan", lifespan_below9)
     elif menu_choice == 'D':
-        print_parameter_query('TXT')
+        print_query('lifespan_top5')
     elif menu_choice == 'E':
-        print_parameter_query('TXT')
+        print_query('max_wing_offset_limit5')
     elif menu_choice == 'F':
-        print_parameter_query('TXT')
+        north_america_lifespan7 = input('Please type the continent of which moths you would like to see with a lifespan above 7. Your options are:\n'
+        'North America, Oceania, Europe, Asia, Africa.\n'
+        'Type option here: ').title()
+        print_parameter_query("common_name, lifespan", "origin = ? AND lifespan > 7", north_america_lifespan7)
     elif menu_choice == 'G':
-        print_parameter_query('TXT')
+        not_europe_has_e = input('Please which letter you would like to filter by, excluding moths from Europe:')
+        print_parameter_query("common_name, scientific_name, origin, endemic, lifespan, average_wingspan, max_wingspan, min_wingspan, max_wingspan - min_wingspan AS difference", "origin <> Europe AND (common_name LIKE '%'||?||'%' OR (scientific_name LIKE '%'||?||'%' AND average_wingspan <= 100))", not_europe_has_e)
     elif menu_choice == 'H':
-        print_parameter_query('TXT')
+        print_query('wingspan_over100')
     elif menu_choice == 'I':
-        print_parameter_query('TXT')
+        print_query('wingspan_sortby_scientific')
     elif menu_choice == 'J':
-        print_parameter_query('TXT')
+        print_query('wingspans')
     
 
 
-# A IN COMMON NAME
-# LIFESPAN BELOW 9
-# LIFESPAN TOP 5
+# A IN COMMON NAME done
+# LIFESPAN BELOW 9 done
+# LIFESPAN TOP 5 done
 # max_wing_offset_and_limit5
 # north_america_lifespan7
 # not_europe_has_e
@@ -94,14 +100,6 @@ while menu_choice != 'X':
 # wingspan_sortby_scientifitc
 # wingspans
 
-#print_query('all')
 
 # make = input('TXTTXT MOTHS TXT: ')
 # print_parameter_query("model, top_speed", "make = ? ORDER BY top_speed DESC", make)
-
-    a_in_common_name = input('Please type which letter you would like to filter by in common name: ')
-    print_parameter_query("common_name, max_wingspan - min_wingspan AS difference, average_wingspan, lifespan, origin", 
-                          "common_name LIKE '%'||?||'%' ORDER BY difference", a_in_common_name)
-
-#lifespan_below9 = input('Please type the number you would like to see lifespans of non-endemic moths below: ')
-#print_parameter_query("scientific_name, common_name, origin, lifespan, min_wingspan, max_wingspan, endemic", "lifespan < ? AND endemic = 'No'", lifespan_below9)
